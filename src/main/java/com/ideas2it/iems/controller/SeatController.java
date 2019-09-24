@@ -41,8 +41,8 @@ public class SeatController {
             Seat seat = new Seat();
             seat.setId(id);
             seat.setStatus(status);
-            seatService.assignSeatForEmployee(seat , employeeId);
-            ModelAndView model = new ModelAndView("displayLayoutRedirect");
+            seatService.assignSeatForEmployee(seat );
+            ModelAndView model = new ModelAndView("seatLayout");
             return model;
         }
         

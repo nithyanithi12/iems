@@ -25,9 +25,7 @@ public class SeatService {
     @Autowired
     SeatDao seatDao;
     
-    public void assignSeatForEmployee(Seat seat, int employeeId) {
-        Employee employee = employeeService.getEmployeeById(employeeId);
-        seat.setEmployee(employee);
+    public void assignSeatForEmployee(Seat seat) {
         seatDao.save(seat);
     }
     

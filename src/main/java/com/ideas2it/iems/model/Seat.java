@@ -24,15 +24,21 @@ import javax.persistence.Table;
 public class Seat {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", unique=true)
     private String id;
     
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "employee_id", unique = true)
-    private Employee employee;
+    private int employeeId;
     
     @Column(name = "status")
     private boolean status;
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
 
     public String getId() {
         return id;
@@ -40,14 +46,6 @@ public class Seat {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
     }
 
     public boolean getStatus() {
