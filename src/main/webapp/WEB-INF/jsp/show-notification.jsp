@@ -52,16 +52,23 @@
                   <c:out value="${query.reason}" />
                 </td>
               </tr>
+                            <tr>
+                <td>Created Date</td>
+                <td>
+                  <c:out value="${query.createdDate}" />
+                </td>
+              </tr>
             <center>
             <table cellpadding="3px">
            <tr>
             <td>
-              <form action="changeQueryStatus" method="post">
+              <form action="/changeQueryStatus" method="post" id="changeQuery">
                 <input type="hidden" name="id" value= "${query.id}" />
-                <button type="submit" target="_self" class="button removebuttonbackground" >
+              <button type="submit" target="_self" onclick = "getConfirmation(${query.id});" class="button removebuttonbackground" >
                   <i class="fa fa-trash" ></i>
                 </button>              
               </form>
+
           </td>
           <td>
               <form action="/displayEmployeeToUpdate" method="post">
@@ -81,5 +88,19 @@
       </c:forEach>
      </c:forEach>
     </div>
+    <script type = "text/javascript">      
+            function getConfirmation(id) {
+               var retVal = confirm("Do you want Delete?");
+               if( retVal == true ) {
+             // document.write ("User wants to continue!");
+               //   document.getElementById("changeQuery").action = "/changeQueryStatus";
+                  return true;
+                  var f=document.form;
+                  f.method="post";
+                  f.action='http://localhost:8080/iems/changeQueryStatus?id='+id;
+                  f.submit();
+               } 
+            }
+      </script>     
     </body>
     </html>

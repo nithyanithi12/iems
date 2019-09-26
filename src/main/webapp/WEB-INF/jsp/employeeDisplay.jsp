@@ -103,7 +103,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
              <form action="/show-employee-query" method="post">  
              <input type="hidden" name="id" value="${employee.id}">       
                <input type="submit" value="All Queries">        
-             </form>
+     </form>
     </div>
   
       <table cellpadding="20px">
@@ -187,6 +187,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
  
  <div>
       <c:forEach var="document" items="${documents}">
+      <c:if test="${document.status}">
         <div class="divbox">
           <fieldset class="divfieldset">
             <legend class="divfieldsetlegend">
@@ -232,6 +233,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
             </table>
         </fieldset>
         </div>
+        </c:if>
       </c:forEach>
     </div>
          

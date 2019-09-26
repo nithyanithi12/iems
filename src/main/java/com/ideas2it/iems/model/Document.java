@@ -69,7 +69,7 @@ public class Document  {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public boolean isStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 	public void setStatus(boolean status) {

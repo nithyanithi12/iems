@@ -11,6 +11,12 @@
     <script src="applicationScript.js"></script>
   </head>
   <body>
+        <div align="right">
+              <form action="/display-all-documents" method="post">  
+             <input type="hidden" name="id" value="${employee.id}">       
+               <input type="submit" value="All Documents">        
+             </form>
+        </div> 
     <form name="employeeCreateForm" action="setEmployeeDetails" method="post" onSubmit="return employeeInputValidation();">
       <table cellpadding="20px">
         <tr>
@@ -170,7 +176,7 @@
        </tr>
        <tr>
          <td>        
-           <input type="file" name="documentContent" id="file" required/> 
+           <input type="file" name="documentContent" id="file" accept="application/pdf" required/> 
          </td>  
          <td>  
            <input type="hidden" name="id" value="${employee.getId()}" /> 
@@ -194,6 +200,7 @@
      
     <div>
       <c:forEach var="document" items="${documents}">
+        <c:if test="${document.status}">
         <div class="divbox">
           <fieldset class="divfieldset">
             <legend class="divfieldsetlegend">
@@ -225,19 +232,26 @@
             <center>
             <table cellpadding="3px">
            <tr>
+           <td>
+              <form action="/read-document" method="post">
+                <input type="hidden" name="id" value= "${document.id}" />
+                <input type="submit" target="_self" value="View"/>
+             </form>
+           </td>
           <td>
           <form action="/update-document" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="${document.id}"><br>
-            <input type="file" name="documentContent" id="file" required/> 
+            <input type="file" name="documentContent" id="file" accept="application/pdf" required /> 
             <input type="hidden" name="employeeId" value="${employee.getId()}" />      
             <input type="submit" value="Update" name="upload" id="upload"/>
            </tr>  
          </form>
           </td>
           <td>
-              <form action="/read-document" method="post">
+              <form action="/delete-document" method="post">
                 <input type="hidden" name="id" value= "${document.id}" />
-                <input type="submit" target="_self" value="View"/>
+                <input type="hidden" name="employeeId" value="${employee.getId()}" />      
+                <input type="submit" target="_self" value="Delete"/>
              </form>
            </td>
            </tr>
@@ -246,8 +260,8 @@
             </table>
         </fieldset>
         </div>
+        </c:if> 
       </c:forEach>
-    </div>
-           
+    </div>        
   </body>
 </html>

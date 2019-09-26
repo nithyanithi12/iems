@@ -7,14 +7,14 @@
     <title>iems</title>
         <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/css/show-notification.css" >
+    <link rel="stylesheet" type="text/css" href="/css/show-solved-query.css" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>   
 <body>
-  <h3>My Queries</h3> 
+  <h3>Solved Queries</h3> 
  <div>
         <c:forEach items="${queries}" var="query" >
-        <c:if test="${query.status} == false">
+        <c:if test="${not query.status}">
         <div class="divbox">
           <fieldset class="divfieldset">
             <legend class="divfieldsetlegend">

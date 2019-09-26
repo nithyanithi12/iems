@@ -7,7 +7,7 @@
     <title>iems</title>
         <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/css/show-notification.css" >
+    <link rel="stylesheet" type="text/css" href="/css/show-all-document-queries.css" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>   
 <body>
@@ -45,17 +45,21 @@
                   <c:out value="${query.reason}" />
                 </td>
               </tr>
+               <tr>
+                <td>Created Date</td>
+                <td>
+                  <c:out value="${query.createdDate}" />
+                </td>
+              </tr>
+              <tr>
+                <td>Solved Date</td>
+                <td>
+                  <c:out value="${query.lastModifiedDate}" />
+                </td>
+              </tr>
             <center>
             <table cellpadding="3px">
            <tr>
-            <td>
-              <form action="changeQueryStatus" method="post">
-                <input type="hidden" name="id" value= "${query.id}" />
-                <button type="submit" target="_self" class="button removebuttonbackground" >
-                  <i class="fa fa-trash" ></i>
-                </button>              
-              </form>
-          </td>
           <td>
               <form action="/displayEmployeeToUpdate" method="post">
             <input type="hidden" name="id" value="${employeeId}" ><br>
@@ -72,6 +76,6 @@
         </div>
       </c:forEach>
      </c:forEach>
-    </div>
+    </div>    
     </body>
     </html>

@@ -59,6 +59,7 @@ public class DocumentController {
         HttpServletRequest request,  HttpServletResponse response) throws IOException, ServletException {
         byte[] bytes = null;
         boolean isDocumentExist = false;
+        boolean isDocumentValid = true;
 		Employee employee = documentService.getEmployeeById(Integer.parseInt(request.getParameter("id")));
 		List<Document> documents = employee.getDocuments();
 		System.out.println(documents);		
@@ -67,11 +68,16 @@ public class DocumentController {
         final Part filePart = request.getPart("documentContent");       
         String documentName = request.getParameter("documentName");  
         for(Document document : documents) {
-        	if(document.getDocumentName().equals(documentName)) {
+        	if((document.getDocumentName().equals(documentName)) && (document.getStatus())) {
         	     isDocumentExist = true;
         	    break;  	
         	}
         }
+        try {
+	        bytes = documentService.convertDocumentToByte(filePart);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}  
         if(!isDocumentExist) {
     	    newDocument.setDocumentName(documentName);
     	    newDocument.setDocumentContent(bytes);
@@ -80,13 +86,7 @@ public class DocumentController {
      		documents.add(newDocument);
      		employee.setDocuments(documents);
     		documentService.modifyEmployee(employee);	
-        }    
-        try {
-	        bytes = documentService.convertDocumentToByte(filePart);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}           
-
+        }            
         return "read-document";
 	}
 	
@@ -120,6 +120,26 @@ public class DocumentController {
 		documentService.modifyEmployee(employee);
         return "read-document";
 	}			
+	
+	@RequestMapping(value="/delete-document",method = RequestMethod.POST)
+    public String deleteDocument(Model model,
+        HttpServletRequest request,  HttpServletResponse response) throws IOException, ServletException {
+		Employee employee = documentService.getEmployeeById(Integer.parseInt(request.getParameter("employeeId")));
+		long document_id = Long.parseLong(request.getParameter("id"));
+		Document document = null;
+		List<Document> documents = employee.getDocuments();
+		System.out.println(documents);			
+		for(Document employeeDocument : documents) {
+		    if(employeeDocument.getId() == document_id) {
+		    	document = employeeDocument; 	
+		    }	
+		}		
+ 		document.setStatus(false);
+ 		documents.add(document);
+ 		employee.setDocuments(documents);
+		documentService.modifyEmployee(employee);
+        return "read-document";
+	}					
 	
 	@RequestMapping(value="/read")
     public String showDocumentReadForm(Model model) {
@@ -169,6 +189,16 @@ public class DocumentController {
 	    model.addAttribute("employees",employees);
         return "show-notification";		       
 	}
+	
+	@RequestMapping(value="/display-all-documents",method = RequestMethod.POST)
+    public String displayAllDocuments(Model model,
+        HttpServletRequest request,  HttpServletResponse response) throws IOException, ServletException {
+		Employee employee = documentService.getEmployeeById(Integer.parseInt(request.getParameter("id")));
+		List<Document> documents = employee.getDocuments();
+	    model.addAttribute("documents",documents);
+        return "/display-all-documents";
+	}			
+	
 	
 	@RequestMapping(value="/show-all-document-queries",method = RequestMethod.POST)
     public String showAllDocumentQueries(Model model,HttpServletRequest request, HttpServletResponse response) 

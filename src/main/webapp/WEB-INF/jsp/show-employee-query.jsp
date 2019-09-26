@@ -7,7 +7,7 @@
     <title>iems</title>
         <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/css/show-notification.css" >
+    <link rel="stylesheet" type="text/css" href="/css/show-employee-query.css" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>   
 <body>
@@ -42,6 +42,15 @@
                 <td>
                   <c:out value="${query.createdDate}" />
                 </td>
+              </tr>
+              <tr>                         
+               <c:if test="${query.status}">
+                   <td>Query Not Yet Solved</td>
+               </c:if>
+                                 
+               <c:if test="${not query.status}">
+                   <td>Query Solved</td>
+               </c:if>         
               </tr>
             </table>
         </fieldset>
