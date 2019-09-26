@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,6 +38,9 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+    
+    @OneToOne(targetEntity = Seat.class, mappedBy = "employee", cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
+    private Seat seat;
     
     @Column(name = "salary")
     private int salary;

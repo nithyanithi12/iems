@@ -54,12 +54,6 @@ public class EmployeeController {
         ModelAndView model = new ModelAndView("displayAllEmployeeRedirect");
         return model;
     }
-        
-    @RequestMapping(value = "/seatLayout")     
-    public ModelAndView seatLayout() {
-        ModelAndView model = new ModelAndView("seatLayout");
-        return model;
-    }
     
     /**
      * Method to set Employee object to ModelAndView object for creating/updating
