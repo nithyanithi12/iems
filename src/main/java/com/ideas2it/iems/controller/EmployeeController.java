@@ -38,7 +38,7 @@ public class EmployeeController {
         return model;
     }
     
-    @RequestMapping(value = "/")     
+    @RequestMapping(value = "/login")     
     public ModelAndView mainPage() {
         ModelAndView model = new ModelAndView("main");
         return model;

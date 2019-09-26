@@ -26,10 +26,19 @@ import com.ideas2it.iems.model.Employee;
 import com.ideas2it.iems.model.Query;
 import com.ideas2it.iems.service.DocumentService;
 
+/**
+ * 
+ * Program iems used to maintain Employee Details like personal information,Documents and 
+ * assigning seats for Employee and also used to maintain client and Project Details
+ * 
+ * @author Viji.K
+ * @since 19/09/2019
+ * @version 1.0
+ *
+ */
 
 @Controller
-public class DocumentController {
-	
+public class DocumentController {	
 	@Autowired
 	private DocumentService documentService;
 		
@@ -59,7 +68,6 @@ public class DocumentController {
         HttpServletRequest request,  HttpServletResponse response) throws IOException, ServletException {
         byte[] bytes = null;
         boolean isDocumentExist = false;
-        boolean isDocumentValid = true;
 		Employee employee = documentService.getEmployeeById(Integer.parseInt(request.getParameter("id")));
 		List<Document> documents = employee.getDocuments();
 		System.out.println(documents);		
@@ -265,4 +273,48 @@ public class DocumentController {
 		documentService.delete(id);
 		return "redirect:/";		
 	}
+	
+    @RequestMapping(value = "/")     
+    public ModelAndView mainPage() {
+        ModelAndView model = new ModelAndView("loginPage");
+        return model;
+    }
+	
+    @RequestMapping(value = "/authenticateUser", method = RequestMethod.POST)
+    public ModelAndView authenticateUser(HttpServletRequest request, 
+        HttpServletResponse response)  throws ServletException, IOException { 
+        ModelAndView model = new ModelAndView();
+        try { 
+            int id = (Integer.parseInt(request.getParameter("id")));
+            String password = request.getParameter("password");
+            String userType = documentService.authenticateUser(id,password);
+            if (userType.equals("Admin")) {
+               // request.getSession().setAttribute("id",id); 
+                model.setViewName("main");
+            } else if (userType.equals("Employee")) {
+              //  request.getSession().setAttribute("id",id); 
+                model.setViewName("employeeDisplay");
+                Employee employee = documentService.getEmployeeById(Integer.parseInt(request.getParameter("id"))); 
+        		List<Document> documents = employee.getDocuments();
+                model.addObject("documents", documents);
+               // request.getSession().setAttribute("employee",employee); 
+                model.addObject("employee",employee);           
+            } else {
+                model.setViewName("loginErrorPage");
+                model.addObject("message","Invalid Username or password");
+            }
+            return model;
+        } catch (Exception exception) {
+            ModelAndView error = new ModelAndView("errorPage");
+            error.addObject("error","Unable to Show Home Page "+exception);
+            return error; 
+        } 
+    }
+    
+    @RequestMapping(value = "/logoutUser")     
+    public ModelAndView exit(HttpServletRequest request,
+        HttpServletResponse response) throws ServletException, IOException {
+        ModelAndView model = new ModelAndView("loginPage");
+        return model;
+    }
 }
