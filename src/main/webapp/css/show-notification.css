@@ -10,7 +10,7 @@ text-shadow:2px 3px 3px white;
 }
 h2,h3 {
 color: white;
-text-shadow: 0px 0px 7px #f702db;
+text-shadow: 0px 0px 7px #a30808;
 padding: 10px 0 0 10px; 
 font-size:35px
 }
@@ -19,8 +19,8 @@ margin:41px;
 text-align: left;
 background: #d0d3f5;
 border-radius: 15px;
-width: 200px;
-height:230px;
+width: 450px;
+height:250px;
 padding: 8px 0px 8px 8px;
 display: inline-block;
 }
@@ -154,7 +154,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Set a style for the submit/send button */
 .form-container .btn {
-  background-color: #194A08;
+  background-color: #4CAF50;
   color: white;
   padding: 16px 20px;
   border: none;
@@ -166,7 +166,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Add a red background color to the cancel button */
 .form-container .cancel {
-  background-color: #810404;
+  background-color: red;
 }
 
 /* Add some hover effects to buttons */

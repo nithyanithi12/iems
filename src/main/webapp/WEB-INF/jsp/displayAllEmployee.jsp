@@ -8,7 +8,13 @@
     <link rel="stylesheet" type="text/css" href="/css/displayall.css" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
-  <body>
+  <body>   
+  <div align="right">
+             <form action="show-notification-form" method="post">         
+                <button type="submit" target="_self" value="button viewbuttonBackground">
+                <i class="fa fa-bell" style="font-size:26px"></i></button>                          
+             </form>
+  </div>
     <div>
       <c:forEach var="employee" items="${employees}">
         <div class="divbox">
@@ -54,7 +60,7 @@
           <td>
               <form action="displayEmployeeToUpdate" method="post">
                 <input type="hidden" name="id" value= "${employee.id}" />
-                <button type="submit"target="_self" class="button editbuttonbackground" >
+                <button type="submit" target="_self" class="button editbuttonbackground" >
                   <i class="fa fa-pencil-square-o"></i></button>            
               </form>
           </td>

@@ -3,19 +3,27 @@
  */
 package com.ideas2it.iems.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 
 /**
@@ -51,7 +59,15 @@ public class Employee {
             { @JoinColumn(name = "project_id") })
     private Set<Project> employeeProjects;
     
-    @Column(name = "blood_group")
+	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name="employee_id")
+    private List<Document> documents;
+
+	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
+	@JoinColumn(name="employee_id")
+    private List<Query> queries;
+	
+	@Column(name = "blood_group")
     private String bloodGroup;
     
     @Column(name = "dob")
@@ -225,4 +241,20 @@ public class Employee {
         this.role = role;
     }
     
+    public List<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(List<Document> documents) {
+		this.documents = documents;
+	}
+
+	public List<Query> getQueries() {
+		return queries;
+	}
+
+	public void setQueries(List<Query> queries) {
+		this.queries = queries;
+	}
+	
 }

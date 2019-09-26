@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ideas2it.iems.dao.EmployeeDao;
+import com.ideas2it.iems.model.DocumentName;
 import com.ideas2it.iems.model.Employee;
 import com.ideas2it.iems.util.CompanyUtil;
 
@@ -21,6 +22,8 @@ import com.ideas2it.iems.util.CompanyUtil;
 public class EmployeeService {
     @Autowired
     EmployeeDao employeeDao;
+    @Autowired
+    private DocumentService documentService;
     
     /**
      * Method to create a new employee 
@@ -66,6 +69,8 @@ public class EmployeeService {
      * @that has been thrown by called method
      */
     public void modifyEmployee(Employee employee) {
+		System.out.println(employee);
+
         employeeDao.save(employee);
     }
 
@@ -89,5 +94,9 @@ public class EmployeeService {
      */
     public List<Employee> getEmployees() {
         return employeeDao.findAll();
+    }
+    
+    public List<DocumentName> getAllDocumentNames() {
+    	return (documentService.getAllDocumentNames());	
     }
 }

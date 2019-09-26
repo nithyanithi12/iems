@@ -6,6 +6,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/css/empcreate.css" >
+        <link rel="stylesheet" type="text/css" href="/css/employeeUpdateDisplay.css" >
+    
     <script src="applicationScript.js"></script>
   </head>
   <body>
@@ -151,6 +153,101 @@
       <input type="button"  value= "Cancel" class="button buttonbackground"  onclick="location.href='displayAllEmployeeRedirect.jsp';">
       <button type = "submit" class="button buttonbackground" > Update </button>
       <img src="Ideas1.png" alt="Ideas2it logo" style="float:right;width:15%;height:15%;">  
-    </form>
+    </form> 
+    <form method="POST" action="/create-document" enctype="multipart/form-data" >
+      <table>
+       <tr>
+         <td>        
+           <select name='documentName' required>
+           <option value="${selected}" selected>${selected}Upload New Document</option>
+           <c:forEach items="${documentNames}" var="documentname">
+           <c:if test="${documentname != selected}"> 
+             <option value="${documentname.getDocumentName()}">${documentname.getDocumentName()}</option>
+             </c:if>
+           </c:forEach>
+                    </select>
+         </td>
+       </tr>
+       <tr>
+         <td>        
+           <input type="file" name="documentContent" id="file" required/> 
+         </td>  
+         <td>  
+           <input type="hidden" name="id" value="${employee.getId()}" /> 
+         </td>
+       </tr>                                 
+       <tr>
+         <td colspan="2">
+           <input type="submit" value="Upload" name="upload" id="upload" /> 
+         </td>
+       </tr>   
+     </table>  
+   </form> 
+     <tr>
+       <td>
+       <form action="add-document-name" method="get">
+         <input type="text" name="documentName" required><br>
+         <input type="submit" value="Add Document Name">
+       </form> 
+       </td>  
+     </tr>      
+     
+    <div>
+      <c:forEach var="document" items="${documents}">
+        <div class="divbox">
+          <fieldset class="divfieldset">
+            <legend class="divfieldsetlegend">
+            </legend>
+            <table cellpadding="5px" class="allemployee">
+              <tr>
+                <td>Id</td>
+                <td>
+                  <c:out value="${document.id}" />
+                </td> 
+              <tr>
+                <td>Document Name</td>
+                <td>
+                  <c:out value="${document.documentName}" />
+                </td>
+              </tr>
+              <tr>
+              <td>Created Date</td>
+              <td>
+                <c:out value="${document.createdDate}" />
+              </td>
+              </tr>
+              <tr>
+              <td>Updated Date</td>
+              <td>
+                <c:out value="${document.lastModifiedDate}" />
+              </td>
+              </tr>
+            <center>
+            <table cellpadding="3px">
+           <tr>
+          <td>
+          <form action="/update-document" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="${document.id}"><br>
+            <input type="file" name="documentContent" id="file" required/> 
+            <input type="hidden" name="employeeId" value="${employee.getId()}" />      
+            <input type="submit" value="Update" name="upload" id="upload"/>
+           </tr>  
+         </form>
+          </td>
+          <td>
+              <form action="/read-document" method="post">
+                <input type="hidden" name="id" value= "${document.id}" />
+                <input type="submit" target="_self" value="View"/>
+             </form>
+           </td>
+           </tr>
+           </table>
+           </center>
+            </table>
+        </fieldset>
+        </div>
+      </c:forEach>
+    </div>
+           
   </body>
 </html>
