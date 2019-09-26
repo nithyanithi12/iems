@@ -5,16 +5,20 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.ServletException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ideas2it.iems.model.Employee;
+import com.ideas2it.iems.model.EmployeeEvent;
 import com.ideas2it.iems.model.Address;
 import com.ideas2it.iems.service.EmployeeService;
+
 
 
 /**
@@ -37,11 +41,17 @@ public class EmployeeController {
     }
     
     @RequestMapping(value = "/")     
-    public ModelAndView mainPage() {
-        ModelAndView model = new ModelAndView("main");
-        return model;
+    public ModelAndView mainPage(HttpServletRequest request) {
+    	HttpSession session = request.getSession();
+    	session.setAttribute("employeeId", 2);
+    	return new ModelAndView("main");
     }
-        
+       
+    @RequestMapping(value = "/getActivities")     
+    public ModelAndView activityPage(HttpServletRequest request) {
+    	return new ModelAndView("activity","events",employeeService.getUpcomingEvents());
+    }
+           
     @RequestMapping(value = "/createEmployeeRedirect")     
     public ModelAndView createEmployeeRedirect() {
         ModelAndView model = new ModelAndView("createEmployee");
@@ -53,6 +63,17 @@ public class EmployeeController {
     public ModelAndView disaplayAllEmployeeRedirect() {
         ModelAndView model = new ModelAndView("displayAllEmployeeRedirect");
         return model;
+    }
+    
+    @RequestMapping(value="/register-event", method= RequestMethod.POST)
+    public ModelAndView registerEvent(HttpServletRequest request) {
+    	EmployeeEvent employeeEvent = new EmployeeEvent();
+    	employeeEvent.setEmployeeId(Integer.parseInt(request.getSession(false).getAttribute("employeeId").toString()));
+    	employeeEvent.setEventId(Integer.parseInt(request.getParameter("id")));
+    	employeeEvent.setRegisterDate(employeeService.fetchDate());
+    	employeeEvent.setAction(request.getParameter("action"));
+    	employeeService.registerEvent(employeeEvent);
+    	return new ModelAndView("main");    	
     }
     
     /**
@@ -223,4 +244,24 @@ public class EmployeeController {
         ModelAndView model = new ModelAndView("main");
         return model;
     }
+	
+	@RequestMapping("/showmyactivities")
+	public ModelAndView showActivities(HttpServletRequest request){
+		ModelAndView model = new ModelAndView("employeeactivities");
+		int id = Integer.parseInt(request.getSession(false).getAttribute("employeeId").toString());
+		List<EmployeeEvent> activities = employeeService.showActivities(id);
+		model.addObject("activities", activities);
+		return model;
+	}
+	
+	@RequestMapping("/get-event-detail")
+	public ModelAndView getEventDetail(HttpServletRequest request) {
+		ModelAndView model = new ModelAndView("employeeactivities");
+	    int eventId = Integer.parseInt(request.getParameter("eventId"));
+	    int id = Integer.parseInt(request.getParameter("id"));
+	    model.addObject("event", employeeService.getEventById(eventId));
+	    model.addObject("activity", employeeService.getEmployeeEventById(id));
+	    return model;
+    }
 }
+	

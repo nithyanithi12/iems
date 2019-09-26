@@ -57,12 +57,6 @@
 							<li><a href="#">Display All</a></li>
 							<li><a href="#">Add project</a></li>
 						</ul></li>
-				     <li class="dropdown "><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Activities<b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a onclick="openurl('display')">Display</a></li>
-							<li><a onclick="openurl('new')">Create</a></li>
-						</ul></li>
 					<li><a onclick="openurl('displayLayout')">Layout</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -72,9 +66,8 @@
 			</div>
 		</div>
 	</nav>
-	
 	<div class="empmaindiv">
-		<iframe style="border-radius: 10px; border: none;" scrolling="yes" src="getActivities" id="iframe" />
+		<iframe style="border-radius: 10px; border: none;" scrolling="yes" src="" id="iframe" />
 		<div>
 			<footer class="container-fluid text-center">
 				<p>Footer Text</p>
