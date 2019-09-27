@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -291,11 +292,15 @@ public class DocumentController {
             String password = request.getParameter("password");
             String userType = documentService.authenticateUser(id,password);
             if (userType.equals("Admin")) {
-               // request.getSession().setAttribute("id",id); 
+            	HttpSession session = request.getSession();
+                session.setAttribute("employeeId",id);
+                session.setMaxInactiveInterval(60*60);
                 model.setViewName("main");
             } else if (userType.equals("Employee")) {
-              //  request.getSession().setAttribute("id",id); 
-                model.setViewName("employeeDisplay");
+            	HttpSession session = request.getSession();
+                session.setAttribute("employeeId",id);
+                session.setMaxInactiveInterval(30*60);
+                model.setViewName("employee-main");
                 Employee employee = documentService.getEmployeeById(Integer.parseInt(request.getParameter("id"))); 
         		List<Document> documents = employee.getDocuments();
                 model.addObject("documents", documents);
@@ -316,6 +321,8 @@ public class DocumentController {
     @RequestMapping(value = "/logoutUser")     
     public ModelAndView exit(HttpServletRequest request,
         HttpServletResponse response) throws ServletException, IOException {
+    	HttpSession session =  request.getSession(false);
+    	session.invalidate();
         ModelAndView model = new ModelAndView("loginPage");
         return model;
     }

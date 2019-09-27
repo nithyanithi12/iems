@@ -75,6 +75,8 @@
 							<i class="fa fa-pencil-square-o" ></i>
 							</button>
 						</form>
+				   </td>
+				   <td>
 						<form action="delete-event" method="get">
 							<input type="hidden" name="id" value="${event.id}"/>
 							<button type="submit" class="button removebuttonbackground" >

@@ -25,19 +25,19 @@ background: #c0c0aa;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #1cefff, #c0c0aa);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #1cefff, #c0c0aa); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 font-family:sans-serif;
-font-size:40px;
+font-size:60px;
 text-align:center;
 }
 /* Slideshow container */
 .slideshow-container {
   width: 100%;
-  height:600px;
+  height:700px;
   font-size: 30px;
-    margin-left: 40%;
+  margin-left: 40%;
   position: relative;
   margin: auto;
   background:url('/img/row-light-bulbs-with-bright-one_79603-617.jpg');
-   border-radius: 8px;
+  border-radius: 8px;
   background-repeat: no-repeat;
   background-size:cover;
 }
@@ -144,7 +144,7 @@ text-align:center;
 			  <p>End Date:${event.endDate}</p>
 			  <p>Time:${event.time}</p>
 			  <p>Description:${event.description}</p>
-              <button type="submit" value="${event.id}" onclick="register(this.id)">Register Now:-</button>	
+             <button type="submit" value="${event.id}" onclick="register(this.id)"><center>Register Now:-</center></button>	
               
          </div>   
 	     </c:forEach> 
@@ -173,6 +173,17 @@ text-align:center;
 function register(id){
 	  document.getElementById("eventId").value=id;
 		  document.getElementById("register").style.display="block";
+		  function myFunction() {
+		    var txt;
+		    var person = prompt("Please enter your name:", "Harry Potter");
+		    if (person == null || person == "") {
+		      txt = "User cancelled the prompt.";
+		    } else {
+		      txt = "Hello " + person + "! How are you today?";
+		    }
+		    document.getElementById("demo").innerHTML = txt;
+		  }
+
 
 }
 
