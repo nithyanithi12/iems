@@ -51,12 +51,12 @@
           <td>Date of Birth</td>
           <td><input type="date" name="dob" maxlength="30"  min="1970-01-01" max="2001-01-01" width="100%" style="width:100%" value="${employee.dob}" required /></td>
           <td>Role</td>
-		    <td><select name="role" style="width: 100%;" required />
+            <td><select name="role" style="width: 100%;" required />
                 <option selected hidden>${employee.role}</option>
-				<option value="Employee">Employee</option>
-				<option value="Admin">Admin</option>
-				</select>
-			</td>
+                <option value="Employee">Employee</option>
+                <option value="Admin">Admin</option>
+                </select>
+            </td>
            <td>City Name</td>
           <td><input type="text" name="city" maxlength="30" value="${employee.address.city}" required /></td>
         </tr>

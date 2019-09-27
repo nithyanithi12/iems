@@ -33,40 +33,13 @@ public class Seat {
     @Column(name = "seat_no")
     private String seatNo;
     
-    @Column(name = "wing_no")
-    private String wingNo;
-    
-    @Column(name = "row_no")
-    private String rowNo;
-    
     @OneToOne(cascade=CascadeType.ALL)  
     private Employee employee;
-    
-    @Column(name = "status")
-    private boolean status;
-    
-    public String getWingNo() {
-        return wingNo;
-    }
 
-    public void setWingNo(String wingNo) {
-        this.wingNo = wingNo;
-    }
 
-    public String getRowNo() {
-        return rowNo;
-    }
-
-    public void setRowNo(String rowNo) {
-        this.rowNo = rowNo;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    @Override
+    public String toString() {
+        return "Seat [id=" + id + ", seatNo=" + seatNo + ", employee=" + employee + "]";
     }
 
     public int getId() {
@@ -84,11 +57,14 @@ public class Seat {
     public void setSeatNo(String seatNo) {
         this.seatNo = seatNo;
     }
-    public boolean getStatus() {
-        return status;
+
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
+
+  
 }

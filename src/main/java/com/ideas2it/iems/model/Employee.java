@@ -3,10 +3,10 @@
  */
 package com.ideas2it.iems.model;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,6 +18,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -46,7 +48,7 @@ public class Employee {
     @Column(name = "id")
     private int id;
     
-    @OneToOne(targetEntity = Seat.class, mappedBy = "employee", cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
+    @OneToOne(targetEntity = Seat.class, mappedBy = "employee", cascade = CascadeType.ALL)
     private Seat seat;
     
     @Column(name = "salary")
@@ -59,17 +61,17 @@ public class Employee {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "employee_project", joinColumns = { @JoinColumn
             (name = "employee_id") }, inverseJoinColumns = 
-            { @JoinColumn(name = "project_id") })
+            { @JoinColumn(name = "project_id") })    
     private Set<Project> employeeProjects;
     
-	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinColumn(name="employee_id")
+    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name="employee_id")
     private List<Document> documents;
 
-	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-	@JoinColumn(name="employee_id")
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="employee_id")
     private List<Query> queries;
-	
+
 	@Column(name = "blood_group")
     private String bloodGroup;
     
@@ -102,40 +104,28 @@ public class Employee {
     
     private int age;
     
-    private int experience;
+    private int experience;    
     
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
     public void setStatus(boolean status) {
         this.status = status;
     }
-
-    /**
-     * @return the age
-     */
+    
     public int getAge() {
         return age;
     }
-
-    /**
-     * @param age the age to set
-     */
+    
     public void setAge(int age) {
         this.age = age;
     }
 
-    /**
-     * @return the experience
-     */
     public int getExperience() {
         return experience;
     }
 
-    /**
-     * @param experience the experience to set
-     */
     public void setExperience(int experience) {
         this.experience = experience;
     }
@@ -259,5 +249,4 @@ public class Employee {
 	public void setQueries(List<Query> queries) {
 		this.queries = queries;
 	}
-	
 }

@@ -15,4 +15,7 @@ import com.ideas2it.iems.model.Employee;
  */
 
 @Repository
-public interface EmployeeDao extends JpaRepository<Employee, Integer> {}
+public interface EmployeeDao extends JpaRepository<Employee,Integer> {}
+
+
+   

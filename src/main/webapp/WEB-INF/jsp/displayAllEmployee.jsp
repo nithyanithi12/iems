@@ -54,7 +54,7 @@
           <td>
               <form action="displayEmployeeToUpdate" method="post">
                 <input type="hidden" name="id" value= "${employee.id}" />
-                <button type="submit" target="_self" class="button editbuttonbackground" >
+                <button type="submit"target="_self" class="button editbuttonbackground" >
                   <i class="fa fa-pencil-square-o"></i></button>            
               </form>
           </td>

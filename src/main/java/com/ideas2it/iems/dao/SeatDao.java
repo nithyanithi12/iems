@@ -3,25 +3,50 @@
  */
 package com.ideas2it.iems.dao;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
-import com.ideas2it.iems.model.Seat;
+import com.ideas2it.iems.model.Employee;
+
 
 /**
- * Program to perform CRUD operation on employee Database 
+ * Prgram to perform removal operation on seat table from database 
+ * 
+ * @author Dilli Babu s
  *
- * @version 1.0
- * @date    14/09/2019
- * @author  Dilli Babu
  */
-
 @Repository
-public interface SeatDao extends JpaRepository<Seat, String> {
+public class SeatDao {
+    
+    @PersistenceContext
+    private EntityManager entityManager;    
+    
     /**
-    public void assignemployee(@Param("id") String id, @Param("employeeId") int employeeId,
-            @Param("status") boolean status);*/
-
+     * Method to remove seat details from seat table
+     *
+     * @param seatNo seat number whose details have to be removed
+     */
+    public void removeEmployeeBySeatNo(String seatNo) { 
+        Session session = entityManager.unwrap(Session.class);
+        Transaction txn = session.beginTransaction();
+        Query query = session.createQuery("delete from Seat s where s.seatNo =:seat").setParameter("seat",seatNo);        
+        query.executeUpdate();
+        txn.commit();
+    }
+    
+    public List<Employee> getUnassignedEmployees() { 
+        List<Employee> employees = new ArrayList();
+        Session session = entityManager.unwrap(Session.class);
+        Query query = session.createSQLQuery("select * from employee e left join seat s on e.id = s.employee_id where s.employee_id is null").addEntity("employee", Employee.class);    
+         return query.list();
+    }
 }

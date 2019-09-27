@@ -6,7 +6,7 @@
     <title> Employee management </title>
     <link rel="stylesheet" type="text/css" href="/css/employee.css" >
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="/js/applicationScript.js" ></script>    
+    <script src="/js/applicationScript.js" ></script>
     <script>
       function openurl(url){
         document.getElementById('iframe').src =url;

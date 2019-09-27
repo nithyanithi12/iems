@@ -28,12 +28,6 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
-    @RequestMapping(value = "/project")     
-    public ModelAndView employeePage(HttpServletRequest request,
-        HttpServletResponse response) throws ServletException, IOException {
-        ModelAndView model = new ModelAndView("project");
-        return model;
-    }
     
     /**
      * Method to display all poject data that exists
@@ -49,7 +43,6 @@ public class ProjectController {
     @RequestMapping(value = "/displayProjects")
     public ModelAndView displayProjects(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         List<Project> projects = null;
         ModelAndView model = new ModelAndView("displayAllProject");
         projects = projectService.getProjects();

@@ -34,30 +34,29 @@ import com.ideas2it.iems.service.EmployeeService;
 public class EmployeeController {
     @Autowired 
     private EmployeeService employeeService;
-    
-    @RequestMapping(value = "/employee")     
-    public ModelAndView employeePage() {
-        ModelAndView model = new ModelAndView("employee");
-        return model;
-    }
-       
+  
     @RequestMapping(value = "/getActivities")     
     public ModelAndView activityPage(HttpServletRequest request) {
     	return new ModelAndView("activity","events",employeeService.getUpcomingEvents());
     }
-           
+    
+    /**
+     * Method to call new employee creation page with employee object
+     *
+     * @param request HttpServletRequest object that contains user's request
+     * @param response HttpServletResponse object to send response for user's 
+     *        request
+     * @return- model jsp page to create new employee
+     * @throws ServletException when servlet fails to handle post method request
+     * @throws IOException when servlet fails to handle input/output for post
+     *        method request
+     */
     @RequestMapping(value = "/createEmployeeRedirect")     
     public ModelAndView createEmployeeRedirect() {
         ModelAndView model = new ModelAndView("createEmployee");
         return model;
     }
     
-    
-    @RequestMapping(value = "/displayAllEmployeeRedirect")     
-    public ModelAndView disaplayAllEmployeeRedirect() {
-        ModelAndView model = new ModelAndView("displayAllEmployeeRedirect");
-        return model;
-    }
     
     @RequestMapping(value="/register-event", method= RequestMethod.POST)
     public ModelAndView registerEvent(HttpServletRequest request) {
@@ -124,26 +123,6 @@ public class EmployeeController {
     }
     
     /**
-     * Method to call new employee creation page with employee object
-     *
-     * @param request HttpServletRequest object that contains user's request
-     * @param response HttpServletResponse object to send response for user's 
-     *        request
-     * @return- model jsp page to create new employee
-     * @throws ServletException when servlet fails to handle post method request
-     * @throws IOException when servlet fails to handle input/output for post
-     *        method request
-     */
-    @RequestMapping(value = "/newEmployee")     
-    public ModelAndView newEmployee(HttpServletRequest request,
-        HttpServletResponse response) throws ServletException, IOException {
-        Employee employee = new Employee();
-        ModelAndView model = new ModelAndView("createEmployee");
-        model.addObject("employee", employee);
-        return model;
-    }
-    
-    /**
      * Method to display particular employee data by using employee id 
      *
      * @param request HttpServletRequest object that contains user's request
@@ -183,8 +162,7 @@ public class EmployeeController {
         int id = Integer.parseInt(request.getParameter("id"));
         ModelAndView model = new ModelAndView("removeEmployeeResult");
             employeeService.deleteEmployee(id);
-            model.addObject("id", id);
-        
+            model.addObject("id", id);        
         return model;
     }
     
@@ -209,7 +187,7 @@ public class EmployeeController {
          	model.addObject("documents", documents); 
             model.addObject("employee", employee);
             List <DocumentName> documentNames = employeeService.getAllDocumentNames();
-        	model.addObject("documentNames", documentNames);        
+        	model.addObject("documentNames", documentNames);  
         return model;
     }
     

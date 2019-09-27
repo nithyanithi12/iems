@@ -138,4 +138,3 @@ function getConfirmation() {
          return false;
       }
  }
- 

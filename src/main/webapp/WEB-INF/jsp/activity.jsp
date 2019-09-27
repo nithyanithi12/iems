@@ -9,9 +9,9 @@
 <title>Insert title here</title>
 </head>
 <style>
-	.initial{
-	display:none;
-	}
+    .initial{
+    display:none;
+    }
     * {box-sizing: border-box}
 body {font-family: Verdana, sans-serif; margin:0}
 .mySlides {display: none}
@@ -135,24 +135,24 @@ text-align:center;
 }
 </style>
   <body>
-	<div class="slideshow-container">
-	      
+    <div class="slideshow-container">
+          
           <c:forEach var="event" items="${events}">
             <div class="mySlides fade">
               <h1>${event.name}</h1>
-			  <p>Start Date:${event.startDate}</p>
-			  <p>End Date:${event.endDate}</p>
-			  <p>Time:${event.time}</p>
-			  <p>Description:${event.description}</p>
-             <button type="submit" value="${event.id}" onclick="register(this.id)"><center>Register Now:-</center></button>	
+              <p>Start Date:${event.startDate}</p>
+              <p>End Date:${event.endDate}</p>
+              <p>Time:${event.time}</p>
+              <p>Description:${event.description}</p>
+              <button type="submit" value="${event.id}" onclick="register(this.id)">Register Now:-</button> 
               
          </div>   
-	     </c:forEach> 
-	     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+         </c:forEach> 
+         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
          <a class="next" onclick="plusSlides(1)">&#10095;</a>
-	     
-	 
-	          <div id="register" class="initial">
+         
+     
+              <div id="register" class="initial">
                      
                         <form action="register-event" method="post">
                             <input type="hidden" name="id" id="eventId"/>
@@ -160,17 +160,20 @@ text-align:center;
                             <input type="text" name="action" required/>
                             <input type="submit" value="Register"/>
                        </form>
-             </div>	
-	   </div>
-	  <div style="text-align:center"><%int i=1;%>
-	  <c:forEach var="event" items="${events}">
-	    <%i++;%>
+             </div> 
+       </div>
+      <div style="text-align:center"><%int i=1;%>
+      <c:forEach var="event" items="${events}">
+        <%i++;%>
          <span class="dot" onclick="currentSlide(<%=i%>)"></span> 
       </c:forEach>
    </div>
-	  
+      
 <script>
 function register(id){
+      document.getElementById("eventId").value=id;
+          document.getElementById("register").style.display="block";
+
 	  document.getElementById("eventId").value=id;
 		  document.getElementById("register").style.display="block";
 		  function myFunction() {
@@ -183,8 +186,6 @@ function register(id){
 		    }
 		    document.getElementById("demo").innerHTML = txt;
 		  }
-
-
 }
 
 var slideIndex = 1;
@@ -214,7 +215,7 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 </script>
-		    
+            
                 
   </body>
 </html>

@@ -83,12 +83,12 @@ body {font-family: Arial, Helvetica, sans-serif;}
 .form-container .btn:hover {
   opacity: 1;
 }
-	.hide{
-	  display:none;
-	}
-	.show{
-	  display:block;
-	}
+.hide{
+ display:none;
+}
+.show{
+ display:block;
+}
 
 </style>
   </head>
@@ -256,8 +256,8 @@ function closeForm() {
   document.getElementById("myForm").style.display = "none";
 }
 function onButtonClick(){
-	  document.getElementById('textInput').className="show";
-	}
+ document.getElementById('textInput').className="show";
+}
 </script>
     <!--End of PopUp window Chat   -->
 
