@@ -40,10 +40,10 @@
 			
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="dropdown "><a onclick="openurl('/showmyactivities')" class="dropdown-toggle"
+					<li class="dropdown "><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Activities</a></li>
 						
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					<li class="dropdown"><a  class="dropdown-toggle"
 						data-toggle="dropdown">Project</a></li>
 						
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -61,7 +61,7 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					
-					<li><a onclick="openurl('/employeeDisplay')"><i class="fa fa-user" style="font-size:25px""; aria-hidden="true"></i></a></li>
+					<li><a onclick="openurl('/getProfile')"><i class="fa fa-user" style="font-size:25px""; aria-hidden="true"></i></a></li>
 					
 					<li><a href="/logoutUser"><span class="glyphicon glyphicon-log-in"></span>
 							Logout</a></li>

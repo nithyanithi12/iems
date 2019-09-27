@@ -303,11 +303,10 @@ public class DocumentController {
                 model.setViewName("employee-main");
                 Employee employee = documentService.getEmployeeById(Integer.parseInt(request.getParameter("id"))); 
         		List<Document> documents = employee.getDocuments();
-                model.addObject("documents", documents);
-               // request.getSession().setAttribute("employee",employee); 
-                model.addObject("employee",employee);           
+                //model.addObject("documents", documents);
+               // model.addObject("employee",employee);           
             } else {
-                model.setViewName("loginErrorPage");
+                model.setViewName("loginPage");
                 model.addObject("message","Invalid Username or password");
             }
             return model;
@@ -318,6 +317,12 @@ public class DocumentController {
         } 
     }
     
+    @RequestMapping("/getProfile")
+    public ModelAndView getProfile(HttpServletRequest request) {
+    	int id = Integer.parseInt(request.getSession(false).getAttribute("employeeId").toString());
+    	return new ModelAndView("employeeDisplay", "employee", documentService.getEmployeeById(id));
+    }
+    	
     @RequestMapping(value = "/logoutUser")     
     public ModelAndView exit(HttpServletRequest request,
         HttpServletResponse response) throws ServletException, IOException {

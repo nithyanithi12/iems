@@ -245,12 +245,14 @@ public class EmployeeController {
 	
 	@RequestMapping("/showmyactivities")
 	public ModelAndView showActivities(HttpServletRequest request){
-		ModelAndView model = new ModelAndView("employeeactivities");
 		int id = Integer.parseInt(request.getSession(false).getAttribute("employeeId").toString());
-		System.out.println(id+"FYGHJJJJJJJJJJJJJJJJJJJJJJJJJJJJ");
 		List<EmployeeEvent> activities = employeeService.showActivities(id);
-		model.addObject("activities", activities);
-		return model;
+		if(activities.size() > 0) {
+		    return new ModelAndView("employeeactivities", "activities", activities);
+		} else {
+			return new ModelAndView("errorPage", "error", "You are not registered on any events before");
+		}
+		
 	}
 	
 	@RequestMapping("/get-event-detail")
