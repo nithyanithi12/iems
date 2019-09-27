@@ -41,12 +41,6 @@ public class EmployeeController {
         ModelAndView model = new ModelAndView("employee");
         return model;
     }
-    
-    @RequestMapping(value = "/login")     
-    public ModelAndView mainPage() {
-        ModelAndView model = new ModelAndView("main");
-        return model;
-    }
        
     @RequestMapping(value = "/getActivities")     
     public ModelAndView activityPage(HttpServletRequest request) {

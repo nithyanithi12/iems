@@ -75,8 +75,6 @@
 							<i class="fa fa-pencil-square-o" ></i>
 							</button>
 						</form>
-					</td>
-					<td>
 						<form action="delete-event" method="get">
 							<input type="hidden" name="id" value="${event.id}"/>
 							<button type="submit" class="button removebuttonbackground" >
@@ -139,6 +137,14 @@
 						<button onclick="showDescription('${event.description}')" class="button viewbuttonbackground">
 						<i class="fa fa-eye" aria-hidden="true"></i></button>
 					</td>
+				</tr>
+				<tr>
+				    <td>
+						<form action="getParticipants" method="get">
+							<input type="hidden" name="id" value="${event.id}"/>
+							<input type="submit" value="participants"/>
+						</form>
+				    </td>
 				</tr>
 			</table>
         </fieldset>

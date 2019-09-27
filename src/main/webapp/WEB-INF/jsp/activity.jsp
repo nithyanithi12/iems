@@ -16,13 +16,30 @@
 body {font-family: Verdana, sans-serif; margin:0}
 .mySlides {display: none}
 img {vertical-align: middle;}
-
+p{color:#fffff6;
+  font-size:20px;
+  margin-left:40%}
+  
+h1{
+background: #c0c0aa;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #1cefff, #c0c0aa);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #1cefff, #c0c0aa); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+font-family:sans-serif;
+font-size:40px;
+text-align:center;
+}
 /* Slideshow container */
 .slideshow-container {
-  max-width: 1000px;
+  width: 100%;
+  height:600px;
+  font-size: 30px;
+    margin-left: 40%;
   position: relative;
   margin: auto;
-  background:url(/img/bg.jpg);
+  background:url('/img/row-light-bulbs-with-bright-one_79603-617.jpg');
+   border-radius: 8px;
+  background-repeat: no-repeat;
+  background-size:cover;
 }
 
 /* Next & previous buttons */
@@ -72,7 +89,7 @@ img {vertical-align: middle;}
   top: 0;
 }
 .box {
-margin-left:100px;
+  margin-left:100px;
   text-align:center;
   width: 70%;
   padding: 50px;
@@ -99,7 +116,7 @@ margin-left:100px;
   -webkit-animation-name: fade;
   -webkit-animation-duration: 1.5s;
   animation-name: fade;
-  animation-duration: 1.5s;
+  animation-duration: 0.5s;
 }
 
 @-webkit-keyframes fade {
@@ -122,29 +139,29 @@ margin-left:100px;
 	      
           <c:forEach var="event" items="${events}">
             <div class="mySlides fade">
-              <p style="font-size:40px;">${event.name}</p>
+              <h1>${event.name}</h1>
 			  <p>Start Date:${event.startDate}</p>
 			  <p>End Date:${event.endDate}</p>
 			  <p>Time:${event.time}</p>
 			  <p>Description:${event.description}</p>
-              <button type="submit" onclick="register()">Register Now:-</button>
-            <div id="register" class="initial">
-                      <h2 style="font-color:yellow">Register Now</h2>
-                        <form action="register-event" method="post">
-                            <input type="hidden" name="id" value="${event.id}"/>
-                            <i>What you want to do in ${event.name}</i>
-                            <input type="text" name="action" required/>
-                            <input type="submit" value="Register"/>
-                       </form>
-             </div>		
-          
+              <button type="submit" value="${event.id}" onclick="register(this.id)">Register Now:-</button>	
+              
          </div>   
 	     </c:forEach> 
 	     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
          <a class="next" onclick="plusSlides(1)">&#10095;</a>
 	     
-	  </div>
-	  
+	 
+	          <div id="register" class="initial">
+                     
+                        <form action="register-event" method="post">
+                            <input type="hidden" name="id" id="eventId"/>
+                            <i style="font-color:white;">What you want to do in ${event.name}</i>
+                            <input type="text" name="action" required/>
+                            <input type="submit" value="Register"/>
+                       </form>
+             </div>	
+	   </div>
 	  <div style="text-align:center"><%int i=1;%>
 	  <c:forEach var="event" items="${events}">
 	    <%i++;%>
@@ -152,8 +169,13 @@ margin-left:100px;
       </c:forEach>
    </div>
 	  
-	  
-	<script>
+<script>
+function register(id){
+	  document.getElementById("eventId").value=id;
+		  document.getElementById("register").style.display="block";
+
+}
+
 var slideIndex = 1;
 showSlides(slideIndex);
 
@@ -180,9 +202,6 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";  
   dots[slideIndex-1].className += " active";
 }
-function register(){
-		  document.getElementById("register").style.display="block";
-  }
 </script>
 		    
                 
