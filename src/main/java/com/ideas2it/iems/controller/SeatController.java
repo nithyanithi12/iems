@@ -33,24 +33,26 @@ public class SeatController {
         private SeatService seatService;
         
         @RequestMapping("/assign")
-        public ModelAndView assignEmployee(HttpServletRequest request,
+        public void assignEmployee(HttpServletRequest request,
                 HttpServletResponse response) throws ServletException, IOException {
-            String id = request.getParameter("id");
+            String seatNo = request.getParameter("boxid");
+            String rowNo = request.getParameter("rowid");
+            String wingNo = request.getParameter("wingid");
             int employeeId = Integer.parseInt(request.getParameter("employeeId"));
             boolean status = true;
             Seat seat = new Seat();
-            seat.setId(id);
+            seat.setSeatNo(seatNo);
+            seat.setRowNo(rowNo);
+            seat.setWingNo(wingNo);
             seat.setStatus(status);
-            seatService.assignSeatForEmployee(seat , employeeId);
-            ModelAndView model = new ModelAndView("displayLayoutRedirect");
-            return model;
+            seatService.assignSeatForEmployee(seat, employeeId);
+            displayLayout();
         }
         
         @RequestMapping("/displayLayout")
         public ModelAndView displayLayout() {
-            List<Seat> seats = new ArrayList();
-            seats = seatService.getSeatDetails();
-            ModelAndView model = new ModelAndView("displayLayout");
+            List<Seat> seats= seatService.getSeatDetails();
+            ModelAndView model = new ModelAndView("seatLayout");
             model.addObject("seats", seats);
             return model;
         }

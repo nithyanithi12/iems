@@ -23,6 +23,9 @@
       <input type="submit" class = "button buttonbackground" target ="_self" value="Display All Employee" onclick="openurl('displayAllEmployeeRedirect')" /><br>
       <input type="submit" class = "button buttonbackground" target ="_self"  value="Create Employee" onclick="openurl('createEmployeeRedirect')" /><br>
       <input type="button" class = "button buttonbackground" value="Exit" onclick="location.href='exit'" />
+      <form action="showmyactivities">
+        <input type="submit" class = "button buttonbackground" value="YOUR ACTIVITIES" />
+      </form>
     </div>
     <div class="empmaindiv">
       <iframe style="border-radius: 10px; border:none;" scrolling="yes" src="displayAllEmployeeRedirect.jsp" id="iframe" />

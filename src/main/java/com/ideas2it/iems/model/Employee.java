@@ -46,6 +46,9 @@ public class Employee {
     @Column(name = "id")
     private int id;
     
+    @OneToOne(targetEntity = Seat.class, mappedBy = "employee", cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
+    private Seat seat;
+    
     @Column(name = "salary")
     private int salary;
     
