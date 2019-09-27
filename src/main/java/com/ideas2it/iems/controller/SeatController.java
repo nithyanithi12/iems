@@ -51,7 +51,6 @@ public class SeatController {
                 HttpServletResponse response) throws ServletException, IOException {
             String seatNo = request.getParameter("seatNo");
             int employeeId = Integer.parseInt(request.getParameter("employeeId"));
-            boolean status = true;
             Seat seat = new Seat();
             seat.setSeatNo(seatNo);
             seatService.assignSeatForEmployee(seat, employeeId);
@@ -135,4 +134,4 @@ public class SeatController {
             return seatService.getUnassignedEmployees();            
             
         }
-    }
+}

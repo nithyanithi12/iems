@@ -127,3 +127,18 @@ function checkAddressType() {
 function goBack() {
     window.history.back();
 }
+<<<<<<< HEAD
+=======
+
+function getConfirmation() {
+      var retVal = confirm("Do you want to continue ?");
+      if( retVal == true ) {
+         document.write ("User wants to continue!");
+         return update-document;
+      } else {
+         document.write ("User does not want to continue!");
+         return false;
+      }
+ }
+ 
+>>>>>>> 0cc7a21d8cd2425fe5387257ce58596a4b494d7c

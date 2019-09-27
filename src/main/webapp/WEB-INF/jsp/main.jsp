@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 <head>
+<<<<<<< HEAD
 <title>iems</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,6 +39,7 @@
 						<ul class="dropdown-menu">
 							<li><a onclick="openurl('createEmployeeRedirect')">Create</a></li>
 							<li><a onclick="openurl('displayAllEmployeeRedirect')">Display All</a></li>
+							<li><a onclick="openurl('showmyactivities')">Activities</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Project <b class="caret"></b></a>
@@ -62,7 +64,7 @@
 					<li><a onclick="openurl('displayLayout')">Layout</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+					<li><a href="/logoutUser"><span class="glyphicon glyphicon-log-in"></span>
 							Logout</a></li>
 				</ul>
 			</div>

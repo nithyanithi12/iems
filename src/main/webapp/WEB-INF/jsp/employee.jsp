@@ -6,7 +6,7 @@
     <title> Employee management </title>
     <link rel="stylesheet" type="text/css" href="/css/employee.css" >
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="applicationScript.js" ></script>    
+    <script src="/js/applicationScript.js" ></script>
     <script>
       function openurl(url){
         document.getElementById('iframe').src =url;
@@ -16,7 +16,7 @@
   <body>
     <div class = "empheader">
       <img class = "emplogo" src="/img/Ideas.png" alt="Ideas2it logo" width="150px" onclick="goBack();"/>
-      <a class="empback" href="main.jsp"><i class="fa fa-angle-double-left"></i></a>
+      <button class="empback" onclick="goBack();"><i class="fa fa-angle-double-left"></i></button>
       <h1 class = "empheadertext">Employee Management</h1>
     </div>
     <div class="empsidediv">

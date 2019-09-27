@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ideas2it.iems.model.Employee;
 import com.ideas2it.iems.model.EmployeeEvent;
 import com.ideas2it.iems.model.Address;
+import com.ideas2it.iems.model.Document;
+import com.ideas2it.iems.model.DocumentName;
 import com.ideas2it.iems.service.EmployeeService;
 
 
@@ -33,18 +35,19 @@ import com.ideas2it.iems.service.EmployeeService;
 public class EmployeeController {
     @Autowired 
     private EmployeeService employeeService;
-    
+
     @RequestMapping(value = "/")     
     public ModelAndView mainPage(HttpServletRequest request) {
     	HttpSession session = request.getSession();
     	session.setAttribute("employeeId", 2);
     	return new ModelAndView("main");
     }
-
+  
     @RequestMapping(value = "/getActivities")     
     public ModelAndView activityPage(HttpServletRequest request) {
-        return new ModelAndView("activity","events",employeeService.getUpcomingEvents());
+    	return new ModelAndView("activity","events",employeeService.getUpcomingEvents());
     }
+    
     /**
      * Method to call new employee creation page with employee object
      *
@@ -62,11 +65,6 @@ public class EmployeeController {
         return model;
     }
     
-    @RequestMapping(value = "/displayAllEmployeeRedirect")     
-    public ModelAndView disaplayAllEmployeeRedirect() {
-        ModelAndView model = new ModelAndView("displayAllEmployeeRedirect");
-        return model;
-    }
     
     @RequestMapping(value="/register-event", method= RequestMethod.POST)
     public ModelAndView registerEvent(HttpServletRequest request) {
@@ -150,7 +148,8 @@ public class EmployeeController {
         ModelAndView model = new ModelAndView("employeeDisplay");
             Employee employee = employeeService.getEmployeeById(id);
             model.addObject("employee", employee);
-        
+    		List<Document> documents = employee.getDocuments();
+            model.addObject("documents", documents);
         return model;
     }
 
@@ -171,8 +170,7 @@ public class EmployeeController {
         int id = Integer.parseInt(request.getParameter("id"));
         ModelAndView model = new ModelAndView("removeEmployeeResult");
             employeeService.deleteEmployee(id);
-            model.addObject("id", id);
-        
+            model.addObject("id", id);        
         return model;
     }
     
@@ -193,8 +191,11 @@ public class EmployeeController {
         int id = Integer.parseInt(request.getParameter("id"));
         ModelAndView model = new ModelAndView("employeeUpdateDisplay");
             Employee employee = employeeService.getEmployeeById(id);
+            List <Document> documents = employee.getDocuments();
+         	model.addObject("documents", documents); 
             model.addObject("employee", employee);
-        
+            List <DocumentName> documentNames = employeeService.getAllDocumentNames();
+        	model.addObject("documentNames", documentNames);  
         return model;
     }
     

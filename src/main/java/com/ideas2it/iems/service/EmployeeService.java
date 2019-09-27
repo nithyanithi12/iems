@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ideas2it.iems.dao.EmployeeDao;
+import com.ideas2it.iems.model.DocumentName;
 import com.ideas2it.iems.model.Employee;
 import com.ideas2it.iems.model.EmployeeEvent;
 import com.ideas2it.iems.model.Event;
@@ -26,9 +27,11 @@ public class EmployeeService {
     @Autowired
     EmployeeDao employeeDao;
     @Autowired
-    EmployeeEventService employeeEventService;
+    private DocumentService documentService;
     @Autowired 
-    EventService eventService;
+    private EventService eventService;
+    @Autowired 
+    private EmployeeEventService employeeEventService;
     
     public Date fetchDate(){
 		return Date.valueOf(LocalDate.now());
@@ -103,6 +106,11 @@ public class EmployeeService {
         return employeeDao.findAll();
     }
     
+
+    public List<DocumentName> getAllDocumentNames() {
+    	return (documentService.getAllDocumentNames());	
+    }
+    
     public void registerEvent(EmployeeEvent employeeEvent) {
     	employeeEventService.registerEvent(employeeEvent);
     }
@@ -118,6 +126,7 @@ public class EmployeeService {
     public Event getEventById(int id) {
     	return eventService.getEventById(id);
     }
+    
     public EmployeeEvent getEmployeeEventById(int id) {
     	return employeeEventService.getEmployeeEventById(id);
     }

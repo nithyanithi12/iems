@@ -17,6 +17,7 @@
 	
 	<properties>
 		<java.version>1.8</java.version>
+        <jstl.version>1.2</jstl.version>
 	</properties>
 
 	<dependencies>
@@ -43,12 +44,11 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-    <groupId>javax.servlet</groupId>
-    <artifactId>jstl</artifactId>
-    <version>1.2</version>
-</dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl.version}</version>
+        </dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>

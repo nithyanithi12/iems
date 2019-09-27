@@ -3,6 +3,9 @@
  */
 package com.ideas2it.iems.model;
 
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -17,6 +20,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 
 /**
@@ -53,9 +62,17 @@ public class Employee {
     @JoinTable(name = "employee_project", joinColumns = { @JoinColumn
             (name = "employee_id") }, inverseJoinColumns = 
             { @JoinColumn(name = "project_id") })
-    private Set<Project> employeeProjects;
     
-    @Column(name = "blood_group")
+    private Set<Project> employeeProjects;
+    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name="employee_id")
+    private List<Document> documents;
+
+    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name="employee_id")
+    private List<Query> queries;
+
+	@Column(name = "blood_group")
     private String bloodGroup;
     
     @Column(name = "dob")
@@ -87,50 +104,28 @@ public class Employee {
     
     private int age;
     
-    private int experience;
+    private int experience;    
     
-    public Employee() {
-        super();
-    }
-
-    public Employee(int id, String name) {
-        super();
-        this.id = id;
-        this.name = name;
-    }
-
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
     public void setStatus(boolean status) {
         this.status = status;
     }
-
-    /**
-     * @return the age
-     */
+    
     public int getAge() {
         return age;
     }
-
-    /**
-     * @param age the age to set
-     */
+    
     public void setAge(int age) {
         this.age = age;
     }
 
-    /**
-     * @return the experience
-     */
     public int getExperience() {
         return experience;
     }
 
-    /**
-     * @param experience the experience to set
-     */
     public void setExperience(int experience) {
         this.experience = experience;
     }
@@ -239,4 +234,19 @@ public class Employee {
         this.role = role;
     }
     
+    public List<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(List<Document> documents) {
+		this.documents = documents;
+	}
+
+	public List<Query> getQueries() {
+		return queries;
+	}
+
+	public void setQueries(List<Query> queries) {
+		this.queries = queries;
+	}
 }
