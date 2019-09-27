@@ -14,6 +14,10 @@
 				<span class="login100-form-title p-b-37">
 					Sign In
 				</span>
+		       <div align="center">
+						  <%if( null != request.getAttribute("error") ) {%>
+               <h5 style="color:red;"><%=request.getAttribute("error")%></h5><%}%>
+               </div>
 				<div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
 					<input class="input100" type="text" name="id" placeholder="Your Id">
 					<span class="focus-input100"></span>

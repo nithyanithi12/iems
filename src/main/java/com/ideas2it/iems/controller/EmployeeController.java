@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.ServletException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -224,11 +223,14 @@ public class EmployeeController {
 	
 	@RequestMapping("/showmyactivities")
 	public ModelAndView showActivities(HttpServletRequest request){
-		ModelAndView model = new ModelAndView("employeeactivities");
 		int id = Integer.parseInt(request.getSession(false).getAttribute("employeeId").toString());
 		List<EmployeeEvent> activities = employeeService.showActivities(id);
-		model.addObject("activities", activities);
-		return model;
+		if(activities.size() > 0) {
+		    return new ModelAndView("employeeactivities", "activities", activities);
+		} else {
+			return new ModelAndView("errorPage", "error", "You are not registered on any events before");
+		}
+		
 	}
 	
 	@RequestMapping("/get-event-detail")

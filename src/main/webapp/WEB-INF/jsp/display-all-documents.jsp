@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="/css/display-all-documents.css" >
     
     <script src="applicationScript.js"></script>
+     <h3>All Documents</h3>
   </head>
   <body>    
     <div>
