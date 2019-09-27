@@ -11,13 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>   
 <body>
-  <div align="right">
-             <form action="show-all-document-queries" method="post">         
-                         <input type="submit" value="View All Queries">        
-             </form>
-             </div>
   <h3>Employee Queries</h3>
-  
  <div>
     <c:forEach items="${employees}" var="employee">
           <c:set var = "employeeId" scope = "session" value = "${employee.id}"/>     
