@@ -83,11 +83,14 @@ public class DocumentService  {
 		return (employeeService.getEmployees());
 		
 	}
+
+	
 	
     public String authenticateUser(int id,String password) 
                                    throws Exception {
         String userType;
         Employee employee = employeeService.getEmployeeById(id);
+        System.out.println(employee+"hjggggggggggggggggggggggggggggggg");
         System.out.println(employee.getId());
         System.out.println(employee.getMobileNumber());
         System.out.println(employee.getRole());
@@ -95,7 +98,6 @@ public class DocumentService  {
             userType = "inValidUser";
         } else if ( password.equals(employee.getMobileNumber())
                    && (employee.getRole().equals("Admin"))) {
-            System.out.println(employee.getRole());
             userType = "Admin";                                    
         } else if ( password.equals(employee.getMobileNumber()) 
                && (employee.getRole().equals("Employee"))) {

@@ -35,13 +35,6 @@ import com.ideas2it.iems.service.EmployeeService;
 public class EmployeeController {
     @Autowired 
     private EmployeeService employeeService;
-
-    @RequestMapping(value = "/")     
-    public ModelAndView mainPage(HttpServletRequest request) {
-    	HttpSession session = request.getSession();
-    	session.setAttribute("employeeId", 2);
-    	return new ModelAndView("main");
-    }
   
     @RequestMapping(value = "/getActivities")     
     public ModelAndView activityPage(HttpServletRequest request) {

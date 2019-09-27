@@ -18,9 +18,9 @@ import com.ideas2it.iems.util.CompanyUtil;
 /**
  * Program to perform logical CRUD operation with Employee Object 
  *
- * @version	1.0
- * @date	14/09/2019
- * @author	Dilli Babu
+ * @version 1.0
+ * @date    14/09/2019
+ * @author  Dilli Babu
  */
 @Service 
 public class EmployeeService {
@@ -28,15 +28,13 @@ public class EmployeeService {
     EmployeeDao employeeDao;
     @Autowired
     private DocumentService documentService;
+    EmployeeEventService employeeEventService;
     @Autowired 
-    private EventService eventService;
-    @Autowired 
-    private EmployeeEventService employeeEventService;
+    EventService eventService;
     
     public Date fetchDate(){
-		return Date.valueOf(LocalDate.now());
-	}
-    
+        return Date.valueOf(LocalDate.now());
+    }    
     /**
      * Method to create a new employee 
      *
@@ -58,7 +56,9 @@ public class EmployeeService {
     public Employee getEmployeeById(int id) {
         int age;
         int experience;
+        System.out.println("yyyyyyyyyyyyyyyyyyyyyyyyyyy");
         Employee employee = employeeDao.getOne(id);
+        System.out.println(employee);
         if (null != employee) {
 
             /* calculating age value by calling util class differenceCalculator 
@@ -81,6 +81,8 @@ public class EmployeeService {
      * @that has been thrown by called method
      */
     public void modifyEmployee(Employee employee) {
+        System.out.println(employee);
+
         employeeDao.save(employee);
     }
 
@@ -108,26 +110,25 @@ public class EmployeeService {
     
 
     public List<DocumentName> getAllDocumentNames() {
-    	return (documentService.getAllDocumentNames());	
+        return (documentService.getAllDocumentNames()); 
     }
-    
+
     public void registerEvent(EmployeeEvent employeeEvent) {
-    	employeeEventService.registerEvent(employeeEvent);
+        employeeEventService.registerEvent(employeeEvent);
     }
     
     public List<Event> getUpcomingEvents(){
-    	return eventService.getUpcomingEvents();
+        return eventService.getUpcomingEvents();
     }
     
     public List<EmployeeEvent> showActivities(int id){
-    	return employeeEventService.showActivities(id);
+        return employeeEventService.showActivities(id);
     }
     
     public Event getEventById(int id) {
-    	return eventService.getEventById(id);
+        return eventService.getEventById(id);
     }
-    
     public EmployeeEvent getEmployeeEventById(int id) {
-    	return employeeEventService.getEmployeeEventById(id);
+        return employeeEventService.getEmployeeEventById(id);
     }
 }

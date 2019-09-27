@@ -127,8 +127,6 @@ function checkAddressType() {
 function goBack() {
     window.history.back();
 }
-<<<<<<< HEAD
-=======
 
 function getConfirmation() {
       var retVal = confirm("Do you want to continue ?");
@@ -140,5 +138,3 @@ function getConfirmation() {
          return false;
       }
  }
- 
->>>>>>> 0cc7a21d8cd2425fe5387257ce58596a4b494d7c

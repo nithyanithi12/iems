@@ -48,7 +48,7 @@ public class Employee {
     @Column(name = "id")
     private int id;
     
-    @OneToOne(targetEntity = Seat.class, mappedBy = "employee", cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
+    @OneToOne(targetEntity = Seat.class, mappedBy = "employee", cascade = CascadeType.ALL)
     private Seat seat;
     
     @Column(name = "salary")
@@ -61,14 +61,14 @@ public class Employee {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "employee_project", joinColumns = { @JoinColumn
             (name = "employee_id") }, inverseJoinColumns = 
-            { @JoinColumn(name = "project_id") })
-    
+            { @JoinColumn(name = "project_id") })    
     private Set<Project> employeeProjects;
+    
     @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name="employee_id")
     private List<Document> documents;
 
-    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="employee_id")
     private List<Query> queries;
 
