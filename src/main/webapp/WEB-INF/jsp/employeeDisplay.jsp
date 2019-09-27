@@ -105,86 +105,70 @@ body {font-family: Arial, Helvetica, sans-serif;}
                <input type="submit" value="All Queries">        
      </form>
     </div>
-  
+  <div align="center">
       <table cellpadding="20px">
         <tr>
           <td><b>ID</b></td>
           <td>${employee.id}</td>
-          <td><b>Salary</b></td>
-          <td>${employee.salary}</td>
+          <td><b>Mobile Number</b></td>
+          <td>${employee.mobileNumber}</td>
+          <td><b>Address </b></td>
+            <td>
         </tr>
         <tr>
           <td><b>Name</b></td>
           <td>${employee.name}</td>
-          <td><b>Date of Join</b></td>
-          <td>${employee.doj}</td>
+          <td><b>E-Mail</b></td>
+          <td>${employee.email}</td>
+          <td><b>Door No</b></td>
+          <td>
+              ${employee.address.doorNo}
+          </td>
         </tr>
         <tr>
           <td><b>Gender</b></td>
           <td>${employee.gender}</td>
-          <td><b>ICE Number</b></td>
-          <td>${employee.iceNumber}</td>
+          <td><b>Role</b></td>
+          <td>${employee.role}</td>
+          <td><b>Street</b></td>
+           <td>
+              ${employee.address.street}
+           </td>
         </tr>
+        
         <tr>
           <td><b>Blood Group</b></td>
           <td>${employee.bloodGroup}</td>
-            <td><b>Address </b></td>
-            <td>
-            </td>
-        </tr>
-        <tr>
-          <td><b>Date of Birth</b></td>
-          <td>${employee.dob}</td>
-            <td><b>Door No</b></td>
-            <td>
-              ${employee.address.doorNo}
-            </td>
-        </tr>
-         <tr>
-          <td><b>Age</b></td>
-          <td>${employee.age}</td>
-            <td><b>Street</b></td>
-            <td>
-              ${employee.address.street}
-            </td>
-        </tr>
-         <tr>
-          <td><b>Experience</b></td>
-            <td>${employee.experience}</td>
-            <td><b>Locality</b></td>
-            <td>
-              ${employee.address.locality}
-            </td>
-        </tr>
-        <tr>          
-          <td><b>Mobile Number</b></td>
-          <td>${employee.mobileNumber}</td>
-            <td><b>City Name</b></td>
+           </td>
+          <td><b>Salary</b></td>
+           <td>${employee.salary}</td>
+           <td><b>City Name</b></td>
             <td>
               ${employee.address.city}
             </td>
         </tr>
         <tr>
-          <td><b>E-Mail</b></td>
-          <td>${employee.email}</td>
-            <td><b>State Name</b></td>
-            <td>
+          <td><b>Date of Birth</b></td>
+          <td>${employee.dob}</td>
+          <td><b>Date of Join</b></td>
+          <td>${employee.doj}</td>
+          <td><b>State Name</b></td>
+          
+           <td>
               ${employee.address.state}
-            </td>
+           </td>
         </tr>
-        <tr>
-          <td><b>Role</b></td>
-          <td>${employee.role}</td>
-            <td><b>Pincode</b></td>
+         <tr>
+          <td><b>Age</b></td>
+          <td>${employee.age}</td>
+          <td><b>ICE Number</b></td>
+          <td>${employee.iceNumber}</td>
+          <td><b>Pincode</b></td>
             <td>
               ${employee.address.pincode}
             </td>
         </tr>
       </table>
-       <!--    <input type="button"  value= "Ok" class="button buttonbackground" onclick="location.href='displayAllEmployeeRedirect.jsp';">
-   <img src="Ideas1.png" alt="Ideas2it logo" style="float:right;width:15%;height:15%;">  -->
-
- 
  <div>
       <c:forEach var="document" items="${documents}">
       <c:if test="${document.status}">
@@ -236,10 +220,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
         </c:if>
       </c:forEach>
     </div>
-         
-         
-         
-         
+    <div>    
          
            
     <!--Code For PopUp window Chat   -->

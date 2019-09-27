@@ -61,8 +61,13 @@ public class DocumentController {
 		DocumentName DocumentName = new DocumentName();
 		DocumentName.setDocumentName(documentName);
 		documentService.addDocumetName(DocumentName);
-		
-	    return " ";	
+		Employee employee = documentService.getEmployeeById(Integer.parseInt(request.getParameter("id")));
+        List <Document> documents = employee.getDocuments();
+     	model.addAttribute("documents", documents); 
+        model.addAttribute("employee", employee);
+        List <DocumentName> documentNames = documentService.getAllDocumentNames();
+    	model.addAttribute("documentNames", documentNames);   
+	    return "employeeUpdateDisplay";	
 	}
     
 	@RequestMapping(value="/create-document",method = RequestMethod.POST)
@@ -96,8 +101,14 @@ public class DocumentController {
      		documents.add(newDocument);
      		employee.setDocuments(documents);
     		documentService.modifyEmployee(employee);	
-        }            
-        return "read-document";
+        }  
+		Employee employees = documentService.getEmployeeById(Integer.parseInt(request.getParameter("id")));
+        List <Document> documentss = employee.getDocuments();
+     	model.addAttribute("documents", documentss); 
+        model.addAttribute("employee", employees);
+        List <DocumentName> documentNames = documentService.getAllDocumentNames();
+    	model.addAttribute("documentNames", documentNames); 
+        return "employeeUpdateDisplay";
 	}
 	
 	@RequestMapping(value="/update-document",method = RequestMethod.POST)
@@ -123,13 +134,18 @@ public class DocumentController {
 				e.printStackTrace();
 		}           
  		document.setDocumentContent(bytes);
- 		document.setStatus(true);
  		document.setLastModifiedDate(now);
  		documents.add(document);
  		employee.setDocuments(documents);
 		documentService.modifyEmployee(employee);
-        return "read-document";
-	}			
+		Employee employees = documentService.getEmployeeById(Integer.parseInt(request.getParameter("employeeId")));
+        List <Document> documentss = employee.getDocuments();
+     	model.addAttribute("documents", documentss); 
+        model.addAttribute("employee", employees);
+        List <DocumentName> documentNames = documentService.getAllDocumentNames();
+    	model.addAttribute("documentNames", documentNames); 
+        return "employeeUpdateDisplay";
+    }			
 	
 	@RequestMapping(value="/delete-document",method = RequestMethod.POST)
     public String deleteDocument(Model model,
@@ -148,7 +164,13 @@ public class DocumentController {
  		documents.add(document);
  		employee.setDocuments(documents);
 		documentService.modifyEmployee(employee);
-        return "read-document";
+		Employee employees = documentService.getEmployeeById(Integer.parseInt(request.getParameter("employeeId")));
+        List <Document> documentss = employee.getDocuments();
+     	model.addAttribute("documents", documentss); 
+        model.addAttribute("employee", employees);
+        List <DocumentName> documentNames = documentService.getAllDocumentNames();
+    	model.addAttribute("documentNames", documentNames); 
+        return "employeeUpdateDisplay";
 	}					
 	
 	@RequestMapping(value="/read")
@@ -189,11 +211,13 @@ public class DocumentController {
 		queries.add(query);
 		employee.setQueries(queries);
 		documentService.modifyEmployee(employee);
+		List<Document> documents = employee.getDocuments();
 		model.addAttribute("employee",employee);
+		model.addAttribute("documents",documents);
 		return "employeeDisplay";			
 	}
 	
-	@RequestMapping(value="/show-notification-form",method = RequestMethod.POST)
+	@RequestMapping(value="/show-notification-form")
     public String showNotification(Model model,HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         List<Employee> employees = documentService.getEmployees();
@@ -211,7 +235,7 @@ public class DocumentController {
 	}			
 	
 	
-	@RequestMapping(value="/show-all-document-queries",method = RequestMethod.POST)
+	@RequestMapping(value="/show-all-document-queries")
     public String showAllDocumentQueries(Model model,HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         List<Employee> employees = documentService.getEmployees();
@@ -307,12 +331,12 @@ public class DocumentController {
                // model.addObject("employee",employee);           
             } else {
                 model.setViewName("loginPage");
-                model.addObject("message","Invalid Username or password");
+                model.addObject("error","Invalid Username or password");
             }
             return model;
         } catch (Exception exception) {
-            ModelAndView error = new ModelAndView("errorPage");
-            error.addObject("error","Unable to Show Home Page "+exception);
+            ModelAndView error = new ModelAndView("loginPage");
+            error.addObject("error","Invalid Username or Password");
             return error; 
         } 
     }

@@ -53,7 +53,9 @@
 					<option value="B+ve">B+</option>
 					<option value="B-ve">B-</option>
 					<option value="O+ve">O+</option>
-					<option value="O-ve">O-</option> </select></td>
+					<option value="O-ve">O-</option> 
+					</select>
+			    </td>
 				<td>Locality</td>
 				<td><input type="text" name="locality" id="temporaryLocality"
 					maxlength="30" required /></td>
@@ -118,9 +120,13 @@
 					maxlength="30" required /></td>
 			</tr>
 			<tr>
-
 				<td>Role</td>
-				<td><input type="text" name="role" maxlength="30" required /></td>
+				<td><select name="role" style="width: 100%;" required />
+					<option value="">Select</option>
+					<option value="Employee">Employee</option>
+					<option value="Admin">Admin</option>
+					</select>
+			    </td>
 			</tr>
 			<tr>
 				<td>Salary</td>

@@ -43,21 +43,22 @@
 						data-toggle="dropdown">Employee <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a onclick="openurl('createEmployeeRedirect')">Create</a></li>
-							<li><a onclick="openurl('displayAllEmployeeRedirect')">Display All</a></li>
 							<li><a onclick="openurl('showmyactivities')">Activities</a></li>
+							<li><a onclick="openurl('displayAllEmployeeRedirect')">All Employees</a></li>
+							<li><a onclick="openurl('show-all-document-queries')">View All Queries</a></li>		
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Project <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Create Project</a></li>
-							<li><a href="#">Display All</a></li>
-							<li><a href="#">Manage Project Employee</a></li>
+							<li><a href="#">All Projects</a></li>
+							<li><a href="#">Manage Projects</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Client <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Create</a></li>
-							<li><a href="#">Display All</a></li>
+							<li><a href="#">All Clients</a></li>
 							<li><a href="#">Add project</a></li>
 						</ul></li>
 				     <li class="dropdown "><a href="#" class="dropdown-toggle"
@@ -69,6 +70,8 @@
 					<li><a onclick="openurl('displayLayout')">Layout</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+		       <li><a onclick="openurl('show-notification-form')" ><span class="glyphicon glyphicon-bell"></span>
+							</a></li>
 					<li><a href="/logoutUser"><span class="glyphicon glyphicon-log-in"></span>
 							Logout</a></li>
 				</ul>

@@ -9,12 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>   
-  <div align="right">
-             <form action="show-notification-form" method="post">         
-                <button type="submit" target="_self" value="button viewbuttonBackground">
-                <i class="fa fa-bell" style="font-size:26px"></i></button>                          
-             </form>
-  </div>
     <div>
       <c:forEach var="employee" items="${employees}">
         <div class="divbox">
