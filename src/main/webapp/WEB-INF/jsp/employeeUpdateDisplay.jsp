@@ -192,6 +192,7 @@
      <tr>
        <td>
        <form action="add-document-name" method="get">
+       <input type="hidden" name="id" value="${employee.getId()}" >
          <input type="text" name="documentName" required><br>
          <input type="submit" value="Add Document Name">
        </form> 

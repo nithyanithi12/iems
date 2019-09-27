@@ -60,6 +60,7 @@ public class DocumentController {
 		DocumentName DocumentName = new DocumentName();
 		DocumentName.setDocumentName(documentName);
 		documentService.addDocumetName(DocumentName);
+		
 	    return " ";	
 	}
     
@@ -172,7 +173,7 @@ public class DocumentController {
   }
  
 	@RequestMapping(value="/document-query",method = RequestMethod.GET)
-    public String raiseQuery(HttpServletRequest request, HttpServletResponse response) 
+    public String raiseQuery(Model model,HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
 		LocalDateTime now = LocalDateTime.now();  	
 	    String reason = request.getParameter("message");
@@ -187,7 +188,8 @@ public class DocumentController {
 		queries.add(query);
 		employee.setQueries(queries);
 		documentService.modifyEmployee(employee);
-		return "hello";			
+		model.addAttribute("employee",employee);
+		return "employeeDisplay";			
 	}
 	
 	@RequestMapping(value="/show-notification-form",method = RequestMethod.POST)
